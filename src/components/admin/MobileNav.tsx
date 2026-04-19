@@ -1,4 +1,4 @@
-import { Building2, Users, CalendarClock } from "lucide-react";
+import { Building2, Users, CalendarClock, Truck } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -6,6 +6,7 @@ const items = [
   { to: "/admin", label: "Sucursales", icon: Building2 },
   { to: "/admin/empleados", label: "Empleados", icon: Users },
   { to: "/admin/turnos", label: "Turnos", icon: CalendarClock },
+  { to: "/admin/proveedores", label: "Proveedores", icon: Truck },
 ];
 
 export const MobileNav = () => {

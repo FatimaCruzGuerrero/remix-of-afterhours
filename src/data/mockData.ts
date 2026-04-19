@@ -49,6 +49,20 @@ export interface Shift {
   days: DayKey[];
 }
 
+export interface Supplier {
+  id: number;
+  name: string;
+  contactName: string;
+  phone: string;
+  email: string;
+  active: boolean;
+}
+
+export const initialSuppliers: Supplier[] = [
+  { id: 1, name: "Distribuidora La Madrileña", contactName: "Roberto Núñez", phone: "+52 55 1234 5678", email: "ventas@lamadrilena.mx", active: true },
+  { id: 2, name: "Vinos & Spirits MX", contactName: "Patricia Vega", phone: "+52 33 9876 5432", email: "contacto@vinosspirits.mx", active: true },
+];
+
 export const initialShifts: Shift[] = [
   { id: 1, employeeId: 1, branch: "Lounge Noir", startTime: "18:00", endTime: "23:00", days: ["thu", "fri", "sat"] },
   { id: 2, employeeId: 2, branch: "The Amber Room", startTime: "19:00", endTime: "02:00", days: ["fri", "sat"] },

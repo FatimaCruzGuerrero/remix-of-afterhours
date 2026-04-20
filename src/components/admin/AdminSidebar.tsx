@@ -1,4 +1,4 @@
-import { Building2, Users, CalendarClock, Truck, Wine, LogOut } from "lucide-react";
+import { Building2, Users, CalendarClock, Truck, Wine, LogOut, Armchair } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -7,6 +7,7 @@ const navItems = [
   { to: "/admin/empleados", label: "Empleados", icon: Users },
   { to: "/admin/turnos", label: "Turnos", icon: CalendarClock },
   { to: "/admin/proveedores", label: "Proveedores", icon: Truck },
+  { to: "/admin/mesas", label: "Mesas", icon: Armchair },
 ];
 
 export const AdminSidebar = () => {

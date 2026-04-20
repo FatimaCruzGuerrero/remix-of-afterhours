@@ -63,6 +63,40 @@ export const initialSuppliers: Supplier[] = [
   { id: 2, name: "Vinos & Spirits MX", contactName: "Patricia Vega", phone: "+52 33 9876 5432", email: "contacto@vinosspirits.mx", active: true },
 ];
 
+export type TableSection = "barra" | "area" | "terraza";
+export type TableStatus = "libre" | "ocupada";
+
+export interface BarTable {
+  id: number;
+  number: number;
+  section: TableSection;
+  status: TableStatus;
+  waiterId: number | null;
+}
+
+export const TABLE_SECTIONS: { key: TableSection; label: string }[] = [
+  { key: "barra", label: "Barra" },
+  { key: "area", label: "Área" },
+  { key: "terraza", label: "Terraza" },
+];
+
+export const initialTables: BarTable[] = [
+  { id: 1, number: 1, section: "barra", status: "libre", waiterId: null },
+  { id: 2, number: 2, section: "barra", status: "ocupada", waiterId: 1 },
+  { id: 3, number: 3, section: "area", status: "libre", waiterId: null },
+  { id: 4, number: 4, section: "area", status: "ocupada", waiterId: 4 },
+  { id: 5, number: 5, section: "area", status: "libre", waiterId: null },
+  { id: 6, number: 6, section: "terraza", status: "libre", waiterId: null },
+  { id: 7, number: 7, section: "terraza", status: "ocupada", waiterId: 2 },
+];
+
+// Default waiter assigned per section (mesero por sección)
+export const initialSectionWaiters: Record<TableSection, number | null> = {
+  barra: 1,
+  area: 4,
+  terraza: 2,
+};
+
 export const initialShifts: Shift[] = [
   { id: 1, employeeId: 1, branch: "Lounge Noir", startTime: "18:00", endTime: "23:00", days: ["thu", "fri", "sat"] },
   { id: 2, employeeId: 2, branch: "The Amber Room", startTime: "19:00", endTime: "02:00", days: ["fri", "sat"] },

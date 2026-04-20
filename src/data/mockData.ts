@@ -64,7 +64,7 @@ export const initialSuppliers: Supplier[] = [
 ];
 
 export type TableSection = "barra" | "area" | "terraza";
-export type TableStatus = "libre" | "ocupada";
+export type TableStatus = "libre" | "ocupada" | "apartada";
 
 export interface BarTable {
   id: number;
@@ -72,6 +72,9 @@ export interface BarTable {
   section: TableSection;
   status: TableStatus;
   waiterId: number | null;
+  // Reservation fields — only populated when status === "apartada"
+  reservationName?: string;
+  reservationTime?: string; // "HH:mm"
 }
 
 export const TABLE_SECTIONS: { key: TableSection; label: string }[] = [

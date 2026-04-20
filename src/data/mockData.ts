@@ -105,3 +105,65 @@ export const initialShifts: Shift[] = [
   { id: 2, employeeId: 2, branch: "The Amber Room", startTime: "19:00", endTime: "02:00", days: ["fri", "sat"] },
   { id: 4, employeeId: 4, branch: "Lounge Noir", startTime: "12:00", endTime: "18:00", days: ["mon", "tue", "wed"] },
 ];
+
+// Product catalog (mock)
+export interface Product {
+  id: number;
+  name: string;
+  unit: string; // e.g. "botella", "caja", "kg"
+  unitPrice: number; // MXN
+}
+
+export const productCatalog: Product[] = [
+  { id: 1, name: "Whisky Single Malt 750ml", unit: "botella", unitPrice: 850 },
+  { id: 2, name: "Vodka Premium 1L", unit: "botella", unitPrice: 520 },
+  { id: 3, name: "Ginebra London Dry 750ml", unit: "botella", unitPrice: 480 },
+  { id: 4, name: "Tequila Reposado 750ml", unit: "botella", unitPrice: 620 },
+  { id: 5, name: "Ron Añejo 750ml", unit: "botella", unitPrice: 410 },
+  { id: 6, name: "Vino Tinto Reserva 750ml", unit: "botella", unitPrice: 380 },
+  { id: 7, name: "Cerveza Artesanal 355ml", unit: "caja (24)", unitPrice: 720 },
+  { id: 8, name: "Agua Mineral 600ml", unit: "caja (24)", unitPrice: 240 },
+  { id: 9, name: "Limón fresco", unit: "kg", unitPrice: 38 },
+  { id: 10, name: "Hielo en bolsa 5kg", unit: "bolsa", unitPrice: 45 },
+];
+
+// Purchase orders
+export type PurchaseOrderStatus = "pendiente" | "enviada" | "recibida" | "cancelada";
+
+export interface PurchaseOrderItem {
+  productId: number;
+  quantity: number;
+  unitPrice: number; // snapshot at order time
+}
+
+export interface PurchaseOrder {
+  id: number;
+  supplierId: number;
+  items: PurchaseOrderItem[];
+  expectedDeliveryDate: string; // ISO date "YYYY-MM-DD"
+  status: PurchaseOrderStatus;
+  createdAt: string; // ISO date
+  total: number; // computed snapshot
+}
+
+export const PURCHASE_ORDER_STATUS: { key: PurchaseOrderStatus; label: string }[] = [
+  { key: "pendiente", label: "Pendiente" },
+  { key: "enviada", label: "Enviada" },
+  { key: "recibida", label: "Recibida" },
+  { key: "cancelada", label: "Cancelada" },
+];
+
+export const initialPurchaseOrders: PurchaseOrder[] = [
+  {
+    id: 1,
+    supplierId: 1,
+    items: [
+      { productId: 1, quantity: 6, unitPrice: 850 },
+      { productId: 9, quantity: 10, unitPrice: 38 },
+    ],
+    expectedDeliveryDate: "2025-04-25",
+    status: "enviada",
+    createdAt: "2025-04-18",
+    total: 6 * 850 + 10 * 38,
+  },
+];

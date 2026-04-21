@@ -258,46 +258,41 @@ const EmployeeDashboard = () => {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* Employee info + shift */}
-        <section className="grid gap-4 md:grid-cols-2">
-          <div className="glass-card p-6">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
-              Empleado
-            </p>
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <h2 className="font-display text-2xl text-foreground">
-                  {currentEmployee.name}
-                </h2>
-                <div className="mt-3 space-y-1.5 text-sm">
-                  <p className="flex items-center gap-2 text-muted-foreground">
-                    <BadgeCheck className="w-4 h-4 text-primary" />
-                    <span className="text-foreground">{currentEmployee.position}</span>
-                  </p>
-                  <p className="flex items-center gap-2 text-muted-foreground">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span className="text-foreground">{currentEmployee.branch}</span>
-                  </p>
-                </div>
+        <section className="glass-card p-6">
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Employee info */}
+            <div>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                Empleado
+              </p>
+              <h2 className="font-display text-2xl text-foreground">
+                {currentEmployee.name}
+              </h2>
+              <div className="mt-3 space-y-1.5 text-sm">
+                <p className="flex items-center gap-2 text-muted-foreground">
+                  <BadgeCheck className="w-4 h-4 text-primary" />
+                  <span className="text-foreground">{currentEmployee.position}</span>
+                </p>
+                <p className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  <span className="text-foreground">{currentEmployee.branch}</span>
+                </p>
               </div>
-              <Badge className="bg-emerald-500/15 text-emerald-700 border-emerald-500/30 border">
-                <CircleDot className="w-3 h-3 mr-1" /> Activo
-              </Badge>
             </div>
-          </div>
 
-          <div className="glass-card p-6">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
-              Turno actual
-            </p>
-            {employeeShift ? (
-              <>
-                <div className="flex items-center justify-between gap-3">
+            {/* Shift info */}
+            <div>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                Turno actual
+              </p>
+              {employeeShift ? (
+                <>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-primary" />
                     </div>
                     <div>
-                      <p className="font-display text-2xl">
+                      <p className="font-display text-xl">
                         {employeeShift.startTime}{" "}
                         <span className="text-muted-foreground text-base">→</span>{" "}
                         {employeeShift.endTime}
@@ -307,41 +302,32 @@ const EmployeeDashboard = () => {
                       </p>
                     </div>
                   </div>
-                  {onShiftNow ? (
-                    <Badge className="bg-emerald-500/15 text-emerald-700 border-emerald-500/30 border">
-                      En turno
-                    </Badge>
-                  ) : (
-                    <Badge variant="outline" className="text-muted-foreground">
-                      Fuera de turno
-                    </Badge>
-                  )}
-                </div>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {WEEK_DAYS.map((d) => {
-                    const active = employeeShift.days.includes(d.key);
-                    const isToday = d.key === currentDayKey();
-                    return (
-                      <span
-                        key={d.key}
-                        className={`text-xs px-2 py-1 rounded-md border ${
-                          active
-                            ? "bg-primary/10 text-primary border-primary/30"
-                            : "bg-muted/40 text-muted-foreground border-border"
-                        } ${isToday ? "ring-1 ring-primary/40" : ""}`}
-                      >
-                        {d.label}
-                      </span>
-                    );
-                  })}
-                </div>
-              </>
-            ) : (
-              <p className="text-sm text-muted-foreground flex items-center gap-2">
-                <CalendarClock className="w-4 h-4" />
-                Sin turno asignado.
-              </p>
-            )}
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {WEEK_DAYS.map((d) => {
+                      const active = employeeShift.days.includes(d.key);
+                      const isToday = d.key === currentDayKey();
+                      return (
+                        <span
+                          key={d.key}
+                          className={`text-xs px-2 py-1 rounded-md border ${
+                            active
+                              ? "bg-primary/10 text-primary border-primary/30"
+                              : "bg-muted/40 text-muted-foreground border-border"
+                          } ${isToday ? "ring-1 ring-primary/40" : ""}`}
+                        >
+                          {d.label}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  <CalendarClock className="w-4 h-4" />
+                  Sin turno asignado.
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
